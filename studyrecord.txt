@@ -1,0 +1,100 @@
+ローカルの基本操作
+1 初期化　・＄git init でリポジトリを作成
+（https://www.sejuku.net/blog/71457　その前について）
+
+2 記録　複数変更し一部のみcommitしたい場合、add で一度ステージに載せる
+
+・＄　git add ファイル名　また　git add . だと全変更ファイルになる
+・＄　git commit -m “message” 変更内容を記載
+
+3 状況確認　addやcommitする前に確認したりするときに使う
+diff 変更内容をcheck
+ status 変更されたファイルを探す
+ 
+・＄git diff 
+リポジトリとワークツリーの差分をチェック
+・$ git diff -staged
+リポジトリとステージの差分をチェック
+・＄git status
+変更ファイルを確認(ステージングされてるかされてないか）
+
+4 履歴の確認
+リポジトリの変更履歴を確認
+・＄git log
+
+5元に戻す
+・$ git restore ファイル名　
+ワークツリーの変更を取り消す
+・$ git restore -staged ファイル名
+ステージに挙げた変更をワークツリーに戻す
+
+チームでの開発
+
+＜ローカル＞
+
+ブランチ：labelを貼り分岐させて開発させていく感覚
+1 ブランチを作成　・＄git branch ブランチ名
+
+2 一覧の表示
+・＄　git branch 
+・＄　git branch -a Githubの方のブランチも表示
+
+＄git checkout ブランチ名　はブランチ名にHEAD
+https://www.sejuku.net/blog/71457
+
+// checkoutよりswitchでやった方が良い
+
+3切替　HEAD今いるbranch
+・$ git switch ブランチ名　　このブランチ名のHEADになる
+・$ git switch -c ブランチ名　ブランチを新規作成して切り替える
+
+4変更をマージ
+・＄git merge  ブランチ名
+・＄git merge リモート名/ブランチ名　
+Github上のブランチをローカルにするコマンド
+
+5コンフリクト　同じ場所の変更をマージしたとき
+
+＜プッシュ、プル＞42:00
+GitHubとの通信
+1初期設定
+・Gitの初期設定
+$git config —global user.name “ユーザー名”  
+$git config —global user.email メールアドレス
+
+・GitHub上でリポジトリ作成
+同じ名前のリポジトリを作る
+
+2 リポジトリの追加
+GitHubにあるリポジトリをローカルに追加
+$git remote add origin　リモート名　 URL
+これをすることによってURLではなくリモート名という名前でリポジトリにアクセスできる
+
+3プッシュ
+$git push 
+$git push origin 
+Originとはリモートレポジトリのこと
+
+4プル
+$git pull リモート名　ブランチ名
+$git pull *省略可能
+プルはローカルのリポジトリやワークツリーまで変更
+
+フェッチ　はリモートからローカルのリポジトリまでになりワークツリーに影響はない
+$git fetch リモート名
+手元のワークツリーまで変更するときはmergeする
+コンフリクトが起きそうな時に使う（直すのが大変だから）
+
+＜プルリクエスト　Github上＞
+開発の基本の手順
+1mainを最新に更新
+2ブランチ作成
+3ファイル修正・コミット
+4プッシュ
+
+5プルリクエスト
+6コードレビュー
+7マージ
+
+
+
