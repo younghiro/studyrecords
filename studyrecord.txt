@@ -148,7 +148,7 @@ escキー　command モード
 ：wq ファイルを保存し終了する
 
 
-
+Example1
 
 
 
